@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - LaundryKart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="flex justify-center">
+                <a href="../index.html" class="flex items-center">
+                    <i class="fas fa-tshirt text-blue-600 text-4xl mr-2"></i>
+                    <span class="text-3xl font-bold text-gray-900">LaundryKart</span>
+                </a>
+            </div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Create your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Already have an account?
+                <a href="login.html" class="font-medium text-blue-600 hover:text-blue-500">
+                    Sign in
+                </a>
+            </p>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <!-- User Type Selection -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        I want to register as:
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="selectUserType('customer')" id="customerBtn" class="flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:outline-none focus:border-blue-500">
+                            <i class="fas fa-user text-2xl mb-2 text-gray-600"></i>
+                            <span class="text-sm font-medium text-gray-900">Customer</span>
+                        </button>
+                        <button onclick="selectUserType('partner')" id="partnerBtn" class="flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:outline-none focus:border-blue-500">
+                            <i class="fas fa-store text-2xl mb-2 text-gray-600"></i>
+                            <span class="text-sm font-medium text-gray-900">Laundry Partner</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer Registration Form -->
+                <form id="customerForm" class="space-y-6 hidden">
+                    <div>
+                        <label for="customer-name" class="block text-sm font-medium text-gray-700">
+                            Full Name
+                        </label>
+                        <div class="mt-1">
+                            <input id="customer-name" name="customer-name" type="text" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="customer-email" class="block text-sm font-medium text-gray-700">
+                            Email address
+                        </label>
+                        <div class="mt-1">
+                            <input id="customer-email" name="customer-email" type="email" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="customer-phone" class="block text-sm font-medium text-gray-700">
+                            Phone Number
+                        </label>
+                        <div class="mt-1">
+                            <input id="customer-phone" name="customer-phone" type="tel" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="customer-password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="customer-password" name="customer-password" type="password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="customer-address" class="block text-sm font-medium text-gray-700">
+                            Delivery Address
+                        </label>
+                        <div class="mt-1">
+                            <textarea id="customer-address" name="customer-address" rows="3" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input id="customer-terms" name="customer-terms" type="checkbox" required
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="customer-terms" class="ml-2 block text-sm text-gray-900">
+                            I agree to the
+                            <a href="#" class="text-blue-600 hover:text-blue-500">Terms and Conditions</a>
+                        </label>
+                    </div>
+
+                    <div>
+                        <button type="submit" onclick="registerCustomer(event)"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Register as Customer
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Partner Registration Form -->
+                <form id="partnerForm" class="space-y-6 hidden">
+                    <div>
+                        <label for="business-name" class="block text-sm font-medium text-gray-700">
+                            Business Name
+                        </label>
+                        <div class="mt-1">
+                            <input id="business-name" name="business-name" type="text" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="owner-name" class="block text-sm font-medium text-gray-700">
+                            Owner Name
+                        </label>
+                        <div class="mt-1">
+                            <input id="owner-name" name="owner-name" type="text" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="business-email" class="block text-sm font-medium text-gray-700">
+                            Business Email
+                        </label>
+                        <div class="mt-1">
+                            <input id="business-email" name="business-email" type="email" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="business-phone" class="block text-sm font-medium text-gray-700">
+                            Business Phone
+                        </label>
+                        <div class="mt-1">
+                            <input id="business-phone" name="business-phone" type="tel" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="business-address" class="block text-sm font-medium text-gray-700">
+                            Business Address
+                        </label>
+                        <div class="mt-1">
+                            <textarea id="business-address" name="business-address" rows="3" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="services" class="block text-sm font-medium text-gray-700">
+                            Services Offered
+                        </label>
+                        <div class="mt-2 space-y-2">
+                            <div class="flex items-center">
+                                <input id="wash" name="services" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="wash" class="ml-2 text-sm text-gray-900">Washing</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="iron" name="services" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="iron" class="ml-2 text-sm text-gray-900">Ironing</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="dry-clean" name="services" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="dry-clean" class="ml-2 text-sm text-gray-900">Dry Cleaning</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="express" name="services" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                <label for="express" class="ml-2 text-sm text-gray-900">Express Service</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="business-hours" class="block text-sm font-medium text-gray-700">
+                            Business Hours
+                        </label>
+                        <div class="mt-1">
+                            <input id="business-hours" name="business-hours" type="text" placeholder="e.g., Mon-Fri: 9AM-6PM" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="business-password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="business-password" name="business-password" type="password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input id="business-terms" name="business-terms" type="checkbox" required
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="business-terms" class="ml-2 block text-sm text-gray-900">
+                            I agree to the
+                            <a href="#" class="text-blue-600 hover:text-blue-500">Terms and Conditions</a>
+                        </label>
+                    </div>
+
+                    <div>
+                        <button type="submit" onclick="registerPartner(event)"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Register as Partner
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectUserType(type) {
+            // Reset all buttons
+            document.getElementById('customerBtn').classList.remove('border-blue-500', 'bg-blue-50');
+            document.getElementById('partnerBtn').classList.remove('border-blue-500', 'bg-blue-50');
+            
+            // Highlight selected button
+            document.getElementById(`${type}Btn`).classList.add('border-blue-500', 'bg-blue-50');
+
+            // Show/hide appropriate form
+            document.getElementById('customerForm').classList.add('hidden');
+            document.getElementById('partnerForm').classList.add('hidden');
+            document.getElementById(`${type}Form`).classList.remove('hidden');
+        }
+
+        function registerCustomer(event) {
+            event.preventDefault();
+            const name = document.getElementById('customer-name').value;
+            const email = document.getElementById('customer-email').value;
+            const phone = document.getElementById('customer-phone').value;
+            const password = document.getElementById('customer-password').value;
+            const address = document.getElementById('customer-address').value;
+            const terms = document.getElementById('customer-terms').checked;
+
+            if (!name || !email || !phone || !password || !address) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+
+            // Simulate registration - in real app, this would be an API call
+            alert('Registration successful! Please login to continue.');
+            window.location.href = 'login.html';
+        }
+
+        function registerPartner(event) {
+            event.preventDefault();
+            const businessName = document.getElementById('business-name').value;
+            const ownerName = document.getElementById('owner-name').value;
+            const email = document.getElementById('business-email').value;
+            const phone = document.getElementById('business-phone').value;
+            const address = document.getElementById('business-address').value;
+            const hours = document.getElementById('business-hours').value;
+            const password = document.getElementById('business-password').value;
+            const terms = document.getElementById('business-terms').checked;
+
+            if (!businessName || !ownerName || !email || !phone || !address || !hours || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+
+            // Simulate registration - in real app, this would be an API call
+            alert('Registration submitted! Our team will review your application and contact you soon.');
+            window.location.href = 'login.html';
+        }
+
+        // Show customer form by default
+        selectUserType('customer');
+    </script>
+</body>
+</html>
